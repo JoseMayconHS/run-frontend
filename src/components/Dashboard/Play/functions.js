@@ -1,9 +1,15 @@
 import React from 'react'
 
 function setDistance(nvl = Number) {
-  if (nvl < 20) return 1
-  if (nvl < 40) return 2
-  return 3
+  if (nvl < 5) return .2
+  if (nvl < 10) return .5
+  if (nvl < 15) return .8
+  if (nvl < 20) return 1.1
+  if (nvl < 25) return 1.5
+  if (nvl < 30) return 1.9
+  if (nvl < 35) return 2.3
+  if (nvl < 40) return 2.7
+  return 4.1
 }
 
 function renderP(pilots = Array) {

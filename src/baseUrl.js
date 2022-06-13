@@ -1,3 +1,3 @@
-const baseUrl = 'http://localhost:8080'
+const baseUrl = 'https://run.up.railway.app'
 
 export default baseUrl

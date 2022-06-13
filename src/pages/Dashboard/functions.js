@@ -80,7 +80,7 @@ function winOrLose({ auth } = Object, { gold, xp } = Object) {
           auth.user.xp = xp
           auth.user.gold = gold
           auth.user.limit_xp = limit_xp
-          auth.user.nvl = nvl  
+          auth.user.nvl = nvl
         }
         resolve(auth)
       })
@@ -150,9 +150,9 @@ function victory(waited = String, { nvl } = Object, advs = Array) {
     nvls += pilot.nvl
   })
 
-  if (waited === 'gold') return (nvls * 1000) - nvl * 500
+  if (waited === 'gold') return (nvls * 10000) - (nvl * 500)
 
-  return (nvls * 100) - nvl * 5
+  return (nvls * 2000) - nvl * 5
 }
 
 function lose(waited = String, { nvl } = Object, advs = Array) {
@@ -161,9 +161,9 @@ function lose(waited = String, { nvl } = Object, advs = Array) {
     nvls += pilot.nvl
   })
 
-  if (waited === 'gold') return (nvls * 300) - nvl * 200
+  if (waited === 'gold') return (nvls * 3000) - (nvl * 200)
 
-  return (nvls * 80) - nvl * 5
+  return (nvls * 500) - nvl * 5
 }
 
 function shame({ nvl } = Object, advs = Array) {
@@ -173,10 +173,10 @@ function shame({ nvl } = Object, advs = Array) {
   return (nvls * 500) - nvl * 100
 }
 
-export { 
-  updateMyCar, transformAsCoint, transformAsNumberValid, 
-  auth, changePart, 
-  changePhoto, getAdv, partSelected, 
-  withdrawal, winOrLose, victory, 
-  lose, shame, pointerEvents, 
+export {
+  updateMyCar, transformAsCoint, transformAsNumberValid,
+  auth, changePart,
+  changePhoto, getAdv, partSelected,
+  withdrawal, winOrLose, victory,
+  lose, shame, pointerEvents,
   changeInfo }
