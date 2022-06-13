@@ -2,16 +2,18 @@ import React, { useState } from 'react'
 import Modal from 'react-awesome-modal'
 import { AwesomeButton } from "react-awesome-button"
 
+import baseUrl from '../../../baseUrl'
+
 import "react-awesome-button/dist/styles.css"
 
 //Estilos
 import { Table } from '../../../styles'
 import { Dashboard, ContentTitle } from '../../../pages/Dashboard/styles'
-import { 
-  Fieldset, ImgProfile, Data, 
-  SubTitle, InputAsSpan, ButtonEdit, 
+import {
+  Fieldset, ImgProfile, Data,
+  SubTitle, InputAsSpan, ButtonEdit,
   InputConfirm, AreaConfirm, ConfirmItem,
-  ConfirmMessage, Span, ButtonPadlock, 
+  ConfirmMessage, Span, ButtonPadlock,
   Del
 } from './styles'
 
@@ -23,7 +25,7 @@ const initialState = {
   edit: false,
   index: 0,
   body: [
-    { 
+    {
       label: 'Editar',
       style: { background: '#d7ff00' },
       action(field) {
@@ -52,12 +54,12 @@ const initialState = {
 	                  }
 	               })
               } else {
-                resolve({ status: false })    
+                resolve({ status: false })
               }
           } else {
             resolve({ status: false })
           }
-        }) 
+        })
       }
     }
   ],
@@ -65,10 +67,10 @@ const initialState = {
 }
 
 const initialStateConfirm = {
-	modal: false, 
-	value: '', 
-	valid: false, 
-	message: 'Verificação', 
+	modal: false,
+	value: '',
+	valid: false,
+	message: 'Verificação',
 	waiting: false
 }
 
@@ -109,7 +111,7 @@ export default ({ push, data, updatePhoto, changeInfo }) => {
 
   const del = async () => {
     console.log(push)
-    if (await doRemove()) push.push('/') 
+    if (await doRemove()) push.push('/')
   }
 
   return (
@@ -121,7 +123,7 @@ export default ({ push, data, updatePhoto, changeInfo }) => {
 
           setConfirm({ ...confirm, waiting: true })
           checkPassword(confirm, { password: confirm.value })
-            .then(state => setConfirm({ ...state })) 
+            .then(state => setConfirm({ ...state }))
         }}>
           <ConfirmItem flex='column'>
             <ConfirmMessage>{confirm.message}</ConfirmMessage>
@@ -143,7 +145,7 @@ export default ({ push, data, updatePhoto, changeInfo }) => {
          }}>Sou eu!</ButtonEdit>}
         <ImgProfile>
           { confirm.valid &&  <label htmlFor='file'><AwesomeButton size='large' type='primary' ripple action={() => document.getElementById('file').click()}>Trocar foto</AwesomeButton></label> }
-          <img src={`http://localhost:8080/files/${data.user.src}.jpg`} alt='Sua foto do perfil' /><input id='file' type='file' onChange={e => updatePhoto(e.target.files[0])} />
+          <img src={`${ baseUrl }/files/${data.user.src}.jpg`} alt='Sua foto do perfil' /><input id='file' type='file' onChange={e => updatePhoto(e.target.files[0])} />
         </ImgProfile>
         <Data edit>
           <Span edit={name.state.edit} verify={ () => name.original !== name.other && validationNickName(name.other) }>
@@ -159,7 +161,7 @@ export default ({ push, data, updatePhoto, changeInfo }) => {
                 </ButtonEdit>
                 {name.state.edit && <ButtonEdit bg='#ff0000' onClick={() => bodyOfTheFunctionsCancel({ state: name, setState: setName, keyWord: 'name' }) }>
                 	Cancelar
-                </ButtonEdit>} 
+                </ButtonEdit>}
               </>
               )}
           </span>
@@ -178,7 +180,7 @@ export default ({ push, data, updatePhoto, changeInfo }) => {
                 </ButtonEdit>
                 {nickname.state.edit && <ButtonEdit bg='#ff0000' onClick={() => bodyOfTheFunctionsCancel({ state: nickname, setState: setNickname, keyWord: 'nickname' }) }>
                 	Cancelar
-                </ButtonEdit>} 
+                </ButtonEdit>}
               </>
             )}
           </span>
@@ -197,7 +199,7 @@ export default ({ push, data, updatePhoto, changeInfo }) => {
                 </ButtonEdit>
                 {email.state.edit && <ButtonEdit bg='#ff0000' onClick={() => bodyOfTheFunctionsCancel({ state: email, setState: setEmail, keyWord: 'email' }) }>
                 	Cancelar
-                </ButtonEdit>}   
+                </ButtonEdit>}
               </>
             )}
           </span>
@@ -234,7 +236,7 @@ export default ({ push, data, updatePhoto, changeInfo }) => {
                 {password.state.edit && <ButtonEdit bg='#ff0000' onClick={() => {
                   document.querySelectorAll('.change-password').forEach(input => input.value = '')
                   setPassword({ state: { ...initialState }, ...{ original: '', other: '', message: '' }})
-                }}>Cancelar</ButtonEdit>}   
+                }}>Cancelar</ButtonEdit>}
             </span>
           </Data>
           )}

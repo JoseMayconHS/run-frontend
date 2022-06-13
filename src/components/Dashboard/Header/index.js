@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+import baseUrl from '../../../baseUrl'
+
 //Estilos
 import { Img, Header, Limit, Left, Right, Menu, LimitMenu, OpenMenu } from '../../Menu/styles'
 import { FastInfo, Profile, Xp } from './styles'
@@ -13,7 +15,7 @@ export default ({ data, changeBody, openModal }) =>
     <Limit>
       <Left>
         <Profile border={border(data.auth.user.nvl)}>
-          <Img src={`http://localhost:8080/files/${data.auth.user.src}.jpg`} alt='Imagem do usuário' />
+          <Img src={`${ baseUrl }/files/${data.auth.user.src}.jpg`} alt='Imagem do usuário' />
         </Profile>
         <FastInfo>
           <span>{transformAsCoint(data.auth.user.gold)}</span>
@@ -34,4 +36,3 @@ export default ({ data, changeBody, openModal }) =>
       </Right>
     </Limit>
   </Header>
-
