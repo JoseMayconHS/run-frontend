@@ -7,7 +7,7 @@ export default ({ changeBody }) =>
   <Header>
     <Limit>
       <Left>
-        <LogoReact onClick={() => changeBody('inicio')} className='rotating' src='./image/react-logo.png' alt='Logo ReactJs' />
+        <LogoReact onClick={() => changeBody('inicio')} src='./favicon.ico' alt='Run' />
       </Left>
       <Right>
         <OpenMenu type='checkbox' id='open-settings' />

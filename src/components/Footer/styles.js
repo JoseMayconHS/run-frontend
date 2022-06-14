@@ -4,6 +4,7 @@ export const Footer = styled.footer`
 	position: fixed;
   bottom: 0px;
   left: 0px;
+  padding: 0 10px;
   height: 80px;
   width: 100%;
   display: flex;
@@ -23,7 +24,7 @@ export const LimitFooter = styled.div`
   margin: auto;
   display: flex;
   flex-flow: column wrap;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
 `
 

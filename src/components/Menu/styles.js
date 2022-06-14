@@ -6,28 +6,29 @@ export const LogoReact = styled.img`
 	width: 50px;
   height: 50px;
   border-radius: 10px;
-
+/*
   -webkit-animation: ${rotate} 5s linear infinite;
   -moz-animation: ${rotate} 5s linear infinite;
   -ms-animation: ${rotate} 5s linear infinite;
   -o-animation: ${rotate} 5s linear infinite;
-  animation: ${rotate} 5s linear infinite;
+  animation: ${rotate} 5s linear infinite; */
 
   :hover { cursor: pointer; }
 `
 
-
 export const Img = styled.img`
   width: 50px;
   height: 50px;
-  border-radius 50%;
+  border-radius: 50%;
 `
 
 export const Header = styled.header`
 	position: fixed;
+  left: 0;
   width: 100%;
   z-index: 5;
   top: 10px;
+  padding: 0 10px;
   height: 60px;
   display: flex;
   flex-direction: column;
@@ -38,9 +39,11 @@ export const Header = styled.header`
 export const Limit = styled.div`
 	width: 100%;
   max-width: 1100px;
-  background: linear-gradient(to right, #f9f9f9, #888, #666, #222, #222);
+  /* background: linear-gradient(to right, #f9f9f9, #888, #666, #222, #222); */
+  background: #222;
   margin: auto;
   height: 59px;
+  padding: 0 20px;
   position: relative;
   border: 1px solid white;
   border-radius: 10px;
@@ -81,7 +84,7 @@ export const Right = styled.div`
   @media (max-width: 759px) {
   	position: relative;
     height: 100%;
-    width: 100px;
+    width: ${({ dash }) => dash ? 80 : 100}px;
   }
 `
 
@@ -90,7 +93,7 @@ export const LimitMenu = styled.div`
 		position: absolute;
 	  left: 0%;
 	  top: 10px;
-	  
+
 	  display: flex;
 	  transition: all .7s linear;
 	}
@@ -98,8 +101,8 @@ export const LimitMenu = styled.div`
 	@media (max-width: 759px) {
 		position: absolute;
     left: 0%;
-    top: -155px;
-    
+    top: -${ ({ dash }) => dash ? '155' : '119' }px;
+
     display: flex;
     flex-direction: column-reverse;
     justify-content: center;
@@ -112,14 +115,14 @@ export const Menu = styled.nav`
 	span:hover { cursor: pointer; }
 
 	@media (min-width: 760px) {
-		width: 258px; 
-    margin-left: 10px;
+		width: 258px;
+    margin-left: ${({ dash }) => dash ? 2 : 1 }0px;
 
     display: flex;
     justify-content: space-around;
     align-items: center;
 
-    span { 
+    span {
       font-size: 16px;
 
       :hover {
@@ -143,6 +146,6 @@ export const Menu = styled.nav`
 `
 
 export const OpenMenu = styled.input`
-	@media (min-width: 760px) { :checked ~ div { left: 90%; } }
-	@media (max-width: 759px) { :checked ~ div { display: flex; top 0px; background: #222; border-radius: 10px; } }
+	@media (min-width: 760px) { :checked ~ div { left: 9${ ({ dash }) => dash ? 4 : 0 }%; } }
+	@media (max-width: 759px) { :checked ~ div { display: flex; top: 0px; background: #222; border-radius: 10px; border: 2px solid #FFF } }
 `

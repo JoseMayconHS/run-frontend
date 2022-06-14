@@ -5,7 +5,7 @@ import { FormArea, Inicio, BlockForm, InsideBlock } from './styles'
 import Login from './forms/Login'
 import Register from './forms/Register'
 
-export default ({ push }) => 
+export default ({ push }) =>
   <Inicio className='Inicio'>
     <BlockForm className='Inicio-form'>
       <InsideBlock side='left' className='Inicio-form-desc l-left'>
@@ -20,4 +20,3 @@ export default ({ push }) =>
       <InsideBlock side='left' className='Inicio-form-inputs l-left'><FormArea><Register push={push} /></FormArea></InsideBlock>
     </BlockForm>
   </Inicio>
- 

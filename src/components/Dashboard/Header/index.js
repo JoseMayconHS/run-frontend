@@ -23,10 +23,10 @@ export default ({ data, changeBody, openModal }) =>
         </FastInfo>
       </Left>
       <Right>
-        <OpenMenu type='checkbox' id='open-settings' />
-        <LimitMenu>
+        <OpenMenu dash type='checkbox' id='open-settings' />
+        <LimitMenu dash>
           <label htmlFor='open-settings'><i className="fa fa-cog"></i></label>
-          <Menu className='Header-limit-right-menu'>
+          <Menu dash className='Header-limit-right-menu'>
             <span onClick={() => changeBody('play')}>Jogar</span>
             <span onClick={() => changeBody('profile')}>Meu perfil</span>
             <span onClick={openModal}>Meu carro</span>

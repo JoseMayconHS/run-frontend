@@ -6,6 +6,7 @@ export const Inicio = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+  padding: 0 20px;
 `
 
 export const BlockForm = styled.div`
@@ -21,7 +22,7 @@ export const BlockForm = styled.div`
 	  display: grid;
 	  grid-template-columns: 1fr 1fr;
 	  grid-template-rows: 1fr;
-	  grid-template-areas: 
+	  grid-template-areas:
 	    'left right';
   }
 
@@ -32,19 +33,25 @@ export const InsideBlock = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
+  padding: 0 10px;
 
   > p  {
     font-size: 2.5rem;
+
+    @media (max-width: 768px) {
+      text-align: center;
+      text-indent: 0px;
+    }
   }
 
-	grid-area: ${({ side }) => side}
+	grid-area: ${({ side }) => side};
 `
 
 export const FormArea = styled.div`
 	border: 1px solid #999;
-  width: 422px;
-  max-width: 98vw;
-  
+  width: 100%;
+  max-width: 422px;
+
   padding: 5px 10px;
   border-radius: 9px;
   background: #f5f5f599;
@@ -58,6 +65,9 @@ export const FormArea = styled.div`
 export const Form = styled.form`
 	width: 90vw;
 	max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
 
 	button {
 		width: 100%;
@@ -78,7 +88,6 @@ export const FormHeader = styled.div`
 export const FormMessage = styled.span`
 	font-size: 15px;
   margin: 10px 0px 0px 20px;
-
 `
 
 export const FormHeaderLabel = styled.label`
@@ -90,16 +99,24 @@ export const FormHeaderLabel = styled.label`
 `
 
 export const AreaInput = styled.div`
-	margin: 5px 0px;
   padding: 3px 0px;
 
   display: flex;
+  row-gap: 5px;
   flex-direction: ${({ double }) => double? 'row': 'column-reverse'};
   ${({ double }) => {
-    if (double) return 'justify-content: space-around;'
+  if (double) return `
+      justify-content: space-around;
+
+      @media (max-width: 500px) {
+        flex-direction: column;
+      }
+    `
   }}
   label {
     position: relative;
+    font-weight: bold;
+
     :after {
       content: '';
       height: 10px;
@@ -108,18 +125,18 @@ export const AreaInput = styled.div`
       background: black;
       transform: rotate(45deg);
       left: 0px;
-      bottom: -25px;
+      bottom: -30px;
       border: 1px solid black;
     }
   }
 
   input:focus ~ label:after { background: yellow; }
-  
+
   input:focus:valid ~ label:after,
   input:valid ~ label:after { background: ${({ double, verify }) => {
     if (!double) return verify()? 'green': 'red'
   }}; }
-  select ~ label:after { background: green; } 
+  select ~ label:after { background: green; }
 `
 
 export const Input = styled.input`
