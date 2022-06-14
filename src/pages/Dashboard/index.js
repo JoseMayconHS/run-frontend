@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import Modal from 'react-awesome-modal'
 
-import { 
-  updateMyCar, auth, changePart, 
-  changePhoto, getAdv, partSelected, 
-  withdrawal, winOrLose, victory, 
-  lose, shame, pointerEvents, 
+import {
+  updateMyCar, auth, changePart,
+  changePhoto, getAdv, partSelected,
+  withdrawal, winOrLose, victory,
+  lose, shame, pointerEvents,
   changeInfo } from './functions'
 
 //Estilos
@@ -35,10 +35,10 @@ export default class Dashboard extends Component {
   constructor(props) {
     super(props)
 
-    this.state = { 
+    this.state = {
       push: props.history,
       ready: false,
-      sale: false, 
+      sale: false,
       auth: {},
       adv: [],
       play: {
@@ -103,7 +103,7 @@ export default class Dashboard extends Component {
             pointerEvents(true, ['Dashboard-Aprimorator-content-inside-body-btn', 'Dashboard-Aprimorator-buttonsBase'])
             const insideAprimore = { ...this.state.insideAprimore }
             insideAprimore.messageUpdate = 'Pronto?'
-            this.setState({ insideAprimore }) 
+            this.setState({ insideAprimore })
           }, 1300)
         }),
         buyPart: (part, table, field, price) => {
@@ -123,9 +123,9 @@ export default class Dashboard extends Component {
         const body = { ...initialBody }
         body[content] = true
         this.setState({ body })
-      }, 
+      },
       aprimore: { ...initialScreenAprimore },
-      body:  { ...initialBody } 
+      body:  { ...initialBody }
     }
   }
 
@@ -139,7 +139,7 @@ export default class Dashboard extends Component {
           body.play = true
           getAdv()
             .then(advs => this.setState({ auth: res, ready: true, aprimore, body, adv: advs }))
-        }) 
+        })
   }
 
   openModal = () => {
@@ -159,11 +159,15 @@ export default class Dashboard extends Component {
     if (state.body.profile) return <Profile push={state.push} data={state.auth} updatePhoto={state.profile.updateProfile} changeInfo={state.profile.updateInfo} />
   }
 
+
   render() {
     return this.state.ready? (
       <Container>
         <Header data={this.state} changeBody={this.state.changeBody} openModal={this.openModal} />
-        <Modal visible={this.state.insideAprimore.modalAprimore} width="450" height="500" effect="fadeInUp" onClickAway={this.closeModal}>
+        <Modal
+          visible={this.state.insideAprimore.modalAprimore} width="450" height='600'
+          effect="fadeInUp" onClickAway={this.closeModal}
+        >
           <Aprimorator data={this.state} change={this.state.insideAprimore.changeAprimore} closeModal={this.closeModal} />
         </Modal>
         {this.renderBody(this.state)}

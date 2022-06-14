@@ -3,7 +3,9 @@ import styled from 'styled-components'
 export const Aprimore = styled.div`
 	background: #9999;
   position: relative;
-  height: 500px;
+  height: 600px;
+	display: flex;
+	flex-direction: column;
 `
 
 export const Header = styled.div`
@@ -11,8 +13,9 @@ export const Header = styled.div`
 
 	ul {
 		margin: 0px;
-	  width: 100%; 
+	  width: 100%;
 	  height: 45px;
+		padding: 0 10px;
 	  position: relative;
 	  border-bottom: 1px solid #fff4;
 
@@ -66,13 +69,15 @@ export const HeaderMenuItem = styled.li`
 `
 
 export const Content = styled.div`
-  height: 450px;
-`
+  height: 550px;
+  position: relative;
+`;
 
 export const InsideContent = styled.div`
   position: relative;
   background: #222;
   height: 100%;
+	padding: 0 10px;
 
   display: flex;
   flex-direction: column;
@@ -82,8 +87,8 @@ export const InsideContent = styled.div`
 
 export const Gold = styled.span`
 	position: absolute;
-  right: 0px;
-  top: 55px;
+  right: 10px;
+  top: 10px;
   background: #9c8c8c;
   z-index: 2;
   padding: 10px;
@@ -91,12 +96,14 @@ export const Gold = styled.span`
 `
 
 export const BaseButtons = styled.div`
-	position: fixed;
+	/* position: fixed;
   bottom: 0px;
-  padding: 0px 5px;
-  width: 100%;
+	left: 20px;
+	right: 20px; */
   display: flex;
   justify-content: space-between;
+	background: #222;
+	padding: 0 20px;
 
   button {
   	border-radius: 50%;

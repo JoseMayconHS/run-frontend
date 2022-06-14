@@ -6,9 +6,10 @@ import images from './images_object'
 import "react-awesome-button/dist/styles.css"
 import { AprimoreTitle } from './styles'
 import { Li } from '../subComponents/Attributes/styles'
-import { 
+import {
   PreviewProduct, ProductName, InfoProductId,
-  InfoProductGlobal, InfoProductBlock
+  InfoProductGlobal, InfoProductBlock,
+  InfoProductBlocks, InfoProductGlobalActions
 } from '../subComponents/Sale/styles'
 
 import { setEffect } from '../functions'
@@ -36,7 +37,7 @@ function submit(gold, data, update) {
     resistance: data.resistance + data.update_config.resistance,
     costs: gold - data.update_config.price,
     ups: data.ups + 1
-  }  
+  }
 
   const newProtection = { update_config: data.update_config, ...part }
 
@@ -48,39 +49,56 @@ function renderProducts(my, toBuy, gold) {
 
   const divs = []
 
-  sale.forEach(part => divs.push(<PreviewProduct key={`sale-protection-${part.id}`}>
-    <ProductName className={`Dashboard-Aprimorator-content-inside-body-inside-Sale-name ${my === part.name? 'myPartEquiped': ''}`} onClick={() => setEffect(part.id)}>{part.name}</ProductName>
-    <InfoProductId className={`Dashboard-Aprimorator-content-inside-body-inside-Sale-info thisIsProduct-${part.id}`}>
-      <InfoProductGlobal>
-        <InfoProductBlock>
-          <span className='block-attr'>Peça</span>
-          <span className='block-value'>{part.name}</span>
-        </InfoProductBlock>
-        <InfoProductBlock>
-          <span className='block-attr'>Resis.</span>
-          <span className='block-value'>{part.resistance}</span>
-        </InfoProductBlock>
-        <InfoProductBlock>
-          <span className='block-attr'>Taxa de Atualização</span>
-          <span className='block-value'>
-            <span className='block-value-update'>
-              <span>Resis.<span> </span>+{part.update_config.resistance}</span>
-            </span>
-            <span className='block-value-update'>
-              <span>Preço</span> <span>{transformAsCoint(part.update_config.price)}</span>
-            </span>
-          </span>
-        </InfoProductBlock>
-        <InfoProductBlock>
-          <span className='block-attr'>Valor</span>
-          <span className='block-value'>{transformAsCoint(part.price)}</span>
-        </InfoProductBlock>
-        <InfoProductBlock>
-          <span>{transformAsCoint(gold)}</span><AwesomeButton size='medium' type='primary' ripple action={() => toBuy(part.name, 'protections', 'protection', part.price)}>Comprar</AwesomeButton>
-        </InfoProductBlock>
-      </InfoProductGlobal>
-    </InfoProductId>
-  </PreviewProduct>))
+  sale.forEach(part => {
+    const equiped = my === part.name
+
+    divs.push(
+    <PreviewProduct key={`sale-protection-${part.id}`}>
+      <ProductName className={`Dashboard-Aprimorator-content-inside-body-inside-Sale-name ${equiped ? 'myPartEquiped': ''}`} onClick={() => setEffect(part.id)}>{part.name}</ProductName>
+      <InfoProductId className={`Dashboard-Aprimorator-content-inside-body-inside-Sale-info thisIsProduct-${part.id}`}>
+        <InfoProductGlobal>
+          <InfoProductBlocks>
+            <InfoProductBlock>
+              <span className='block-attr'>Peça</span>
+              <span className='block-value'>{part.name}</span>
+            </InfoProductBlock>
+            <InfoProductBlock>
+              <span className='block-attr'>Resis.</span>
+              <span className='block-value'>{part.resistance}</span>
+            </InfoProductBlock>
+          </InfoProductBlocks>
+          <InfoProductBlocks paddingX>
+            <InfoProductBlock>
+              <span className='block-attr'>Taxa de Atualização</span>
+              <span className='block-value'>
+                <span className='block-value-update'>
+                  <span>Resis.</span> <span>+{part.update_config.resistance}</span>
+                </span>
+                <span className='block-value-update'>
+                  <span>Preço</span> <span>{transformAsCoint(part.update_config.price)}</span>
+                </span>
+              </span>
+            </InfoProductBlock>
+            <InfoProductBlock>
+              <span className='block-attr'>Valor</span>
+              <span className='block-value'>{transformAsCoint(part.price)}</span>
+            </InfoProductBlock>
+          </InfoProductBlocks>
+        </InfoProductGlobal>
+        <InfoProductGlobalActions>
+          <AwesomeButton
+            size='small' type='secondary' ripple
+            action={() => setEffect()}>Voltar</AwesomeButton>
+          <InfoProductBlock>
+            <span>{ equiped ? 'Equipado' : transformAsCoint(gold) }</span>
+            <AwesomeButton size='medium' type={ equiped ? 'disabled' : 'primary' }
+              ripple action={() => toBuy(part.name, 'protections', 'protection', part.price)}>Comprar</AwesomeButton>
+          </InfoProductBlock>
+        </InfoProductGlobalActions>
+      </InfoProductId>
+    </PreviewProduct>
+    )
+  })
 
   return divs
 }

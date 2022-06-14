@@ -19,7 +19,7 @@ export const Global = createGlobalStyle`
 
 	button:hover { cursor: pointer; }
 
-	input, button { outline: none; }
+	input, button { outline: none; border: none; background: inherit }
 
 	ul { list-style: none; padding: 0px; margin: 0px; }
 
@@ -113,9 +113,11 @@ export const Container = styled.div`
 `
 
 export const Loading = styled.div`
-	width: 200px;
-  margin: auto;
-  padding: 0px;
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 `
 
 export const rotate = keyframes`

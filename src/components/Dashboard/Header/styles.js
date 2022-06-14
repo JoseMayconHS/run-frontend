@@ -49,7 +49,7 @@ export const Xp = styled.span`
 		border-bottom: 1px solid #FFF;
 		border-radius: 10px;
 		height: 13px;
-		width: 200px;
+		width: 120px;
 		left: 25px;
 		top: 2px;
 	}
@@ -61,7 +61,7 @@ export const Xp = styled.span`
 		position: absolute;
 		background: green;
 		height: 13px;
-		width: ${({ start, end }) => Math.floor(200 - ((end - start) * 200 / (end / 2)))}px;
+		width: ${({ start, end }) => Math.floor(120 - ((end - start) * 120 / (end / 2)))}px;
 		left: 25.5px;
 		top: 2.5px;
 	}

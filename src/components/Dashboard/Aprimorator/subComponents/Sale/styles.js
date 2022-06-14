@@ -12,6 +12,7 @@ export const Products = styled.div`
   position: relative;
   display: flex;
   flex-flow: row wrap;
+  gap: 5px;
   justify-content: space-around;
 `
 
@@ -41,7 +42,7 @@ export const PreviewProduct = styled.div`
 `
 
 export const ProductName = styled.span`
-	 border: 1px solid white; 
+	 border: 1px solid white;
   width: 100%;
   height: 100%;
   text-align: center;
@@ -60,7 +61,7 @@ export const InfoProductId = styled.div`
   border-radius: 10px;
   display: none;
   position: absolute;
-  top: -250px;
+  top: 0;
   width: 100%;
   max-width: 450px;
   left: 0px;
@@ -70,25 +71,58 @@ export const InfoProductId = styled.div`
 `
 
 export const InfoProductGlobal = styled.div`
-	color: white;
   width: 100%;
-  
+
   display: flex;
   justify-content: space-around;
+  flex-direction: column;
   flex-flow: row wrap;
+  row-gap: 10px;
 `
 
+export const InfoProductGlobalBack = styled.button`
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+`
+
+export const InfoProductGlobalActions = styled.div`
+  display: flex;
+  column-gap: 30px;
+  align-items: flex-end;
+  justify-content: space-evenly;
+  width: 100%;
+  padding: 10px;
+`
+
+export const InfoProductBlocks = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  gap: 10px;
+  width: 100%;
+
+  ${({ paddingX }) => paddingX ? `
+    > div {
+      padding: 3px 10px;
+
+      .block-attr {
+        padding: 3px 10px;
+      }
+    }
+  `: ''}
+`
 
 export const InfoProductBlock = styled.div`
 	background: #111;
+  color: #fff;
   border-radius: 8px;
-  
+
   display: flex;
   flex-direction: column;
+  row-gap: 3px;
   justify-content: space-around;
   align-items: center;
   padding: 3px;
-  margin: 5px 2px;
 
   .block-attr {
   	background: white;
@@ -100,13 +134,34 @@ export const InfoProductBlock = styled.div`
   .block-value {
   	color: green;
   	display: flex;
+    font-weight: 700;
   }
 
   .block-value-update {
-  	border: 1px solid #fff;
+    border: 1px solid #fff;
+    padding: 5px;
 	  width: 100%;
 	  display: flex;
 	  flex-direction: column;
-	  justify-content: center;
+	  justify-content: flex-start;
+
+    span {
+
+      &:first-child {
+        color: #fff !important;
+        font-weight: 100;
+      }
+
+      &:last-child {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: green;
+        font-size: 16px;
+        font-weight: 700;
+      }
+    }
+
   }
 `

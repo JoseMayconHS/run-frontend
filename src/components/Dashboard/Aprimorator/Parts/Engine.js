@@ -6,9 +6,10 @@ import images from './images_object'
 import "react-awesome-button/dist/styles.css"
 import { ExchangesArea, ExchangeQtd, LiLabel, LiData, AprimoreTitle } from './styles'
 import { Li } from '../subComponents/Attributes/styles'
-import { 
+import {
   PreviewProduct, ProductName, InfoProductId,
-  InfoProductGlobal, InfoProductBlock
+  InfoProductGlobal, InfoProductBlock,
+  InfoProductBlocks, InfoProductGlobalActions
 } from '../subComponents/Sale/styles'
 
 import { setEffect } from '../functions'
@@ -54,8 +55,8 @@ function submit(gold, data, update) {
   }
 
   const newEngine = { exchange: data.exchange, exchange_rates: data.exchange_rates, update_config: data.update_config, ...part }
-  
-  update(newEngine, 'engine_object') 
+
+  update(newEngine, 'engine_object')
 }
 
 function renderProducts(my, toBuy, gold) {
@@ -63,61 +64,81 @@ function renderProducts(my, toBuy, gold) {
 
   const divs = []
 
-  sale.forEach(part => divs.push(<PreviewProduct key={`sale-engine-${part.id}`}>
-    <ProductName className={`Dashboard-Aprimorator-content-inside-body-inside-Sale-name ${my === part.name? 'myPartEquiped': ''}`} onClick={() => setEffect(part.id)}>{part.name}</ProductName>
-    <InfoProductId className={`Dashboard-Aprimorator-content-inside-body-inside-Sale-info thisIsProduct-${part.id}`}>
-      <InfoProductGlobal>
-        <InfoProductBlock>
-          <span className='block-attr'>Peça</span>
-          <span className='block-value'>{part.name}</span>
-        </InfoProductBlock>
-        <InfoProductBlock>
-          <span className='block-attr'>Velo.</span>
-          <span className='block-value'>{part.speed}</span>
-        </InfoProductBlock>
-        <InfoProductBlock>
-          <span className='block-attr'>Acel.</span>
-          <span className='block-value'>{part.acceleration}</span>
-        </InfoProductBlock>
-        <InfoProductBlock>
-          <span className='block-attr'>Resis.</span>
-          <span className='block-value'>{part.resistance}</span>
-        </InfoProductBlock>
-        <InfoProductBlock>
-          <span className='block-attr'>Turbo</span>
-          <span className='block-value'>{part.turbo}</span>
-        </InfoProductBlock>
-        <InfoProductBlock>
-          <span className='block-attr'>Marchas</span>
-          <span className='block-value'>{part.exchange}</span>
-        </InfoProductBlock>
-        <InfoProductBlock>
-          <span className='block-attr'>Taxa de Atualização</span>
-          <span className='block-value'>
-            <span className='block-value-update'>
-              <span>Velo.</span> <span>+{part.update_config.speed}</span>
-            </span>
-            <span className='block-value-update'>
-              <span>Acel.</span ><span>+{part.update_config.acceleration}</span>
-            </span>
-            <span className='block-value-update'>
-              <span>Resis.<span> </span>+{part.update_config.resistance}</span>
-            </span>
-            <span className='block-value-update'>
-              <span>Preço</span> <span>{transformAsCoint(part.update_config.price)}</span>
-            </span>
-          </span>
-        </InfoProductBlock>
-        <InfoProductBlock>
-          <span className='block-attr'>Valor</span>
-          <span className='block-value'>{transformAsCoint(part.price)}</span>
-        </InfoProductBlock>
-        <InfoProductBlock>
-          <span>{transformAsCoint(gold)}</span><AwesomeButton size='medium' type='primary' ripple action={() => toBuy(part.name, 'engines', 'engine', part.price)}>Comprar</AwesomeButton>
-        </InfoProductBlock>
-      </InfoProductGlobal>
-    </InfoProductId>
-  </PreviewProduct>))
+  sale.forEach(part => {
+    const equiped = my === part.name
+
+    divs.push(
+      <PreviewProduct key={`sale-engine-${part.id}`}>
+        <ProductName className={`Dashboard-Aprimorator-content-inside-body-inside-Sale-name ${equiped ? 'myPartEquiped': ''}`} onClick={() => setEffect(part.id)}>{part.name}</ProductName>
+        <InfoProductId className={`Dashboard-Aprimorator-content-inside-body-inside-Sale-info thisIsProduct-${part.id}`}>
+          <InfoProductGlobal>
+            <InfoProductBlocks>
+              <InfoProductBlock>
+                <span className='block-attr'>Peça</span>
+                <span className='block-value'>{part.name}</span>
+              </InfoProductBlock>
+              <InfoProductBlock>
+                <span className='block-attr'>Velo.</span>
+                <span className='block-value'>{part.speed}</span>
+              </InfoProductBlock>
+              <InfoProductBlock>
+                <span className='block-attr'>Acel.</span>
+                <span className='block-value'>{part.acceleration}</span>
+              </InfoProductBlock>
+              <InfoProductBlock>
+                <span className='block-attr'>Resis.</span>
+                <span className='block-value'>{part.resistance}</span>
+              </InfoProductBlock>
+              <InfoProductBlock>
+                <span className='block-attr'>Turbo</span>
+                <span className='block-value'>{part.turbo}</span>
+              </InfoProductBlock>
+              <InfoProductBlock>
+                <span className='block-attr'>Marchas</span>
+                <span className='block-value'>{part.exchange}</span>
+              </InfoProductBlock>
+            </InfoProductBlocks>
+            <InfoProductBlocks paddingX>
+              <InfoProductBlock>
+                <span className='block-attr'>Taxa de Atualização</span>
+                <span className='block-value'>
+                  <span className='block-value-update'>
+                    <span>Velo.</span> <span>+{part.update_config.speed}</span>
+                  </span>
+                  <span className='block-value-update'>
+                    <span>Acel.</span> <span>+{part.update_config.acceleration}</span>
+                  </span>
+                  <span className='block-value-update'>
+                    <span>Resis.</span> <span>+{part.update_config.resistance}</span>
+                  </span>
+                  <span className='block-value-update'>
+                    <span>Preço</span> <span>{transformAsCoint(part.update_config.price)}</span>
+                  </span>
+                </span>
+              </InfoProductBlock>
+              <InfoProductBlock>
+                <span className='block-attr'>Valor</span>
+                <span className='block-value'>{transformAsCoint(part.price)}</span>
+              </InfoProductBlock>
+            </InfoProductBlocks>
+          </InfoProductGlobal>
+          <InfoProductGlobalActions>
+            <AwesomeButton
+              size='small' type='secondary' ripple
+              action={() => setEffect()}>Voltar</AwesomeButton>
+            <InfoProductBlock>
+              <span>{ equiped ? 'Equipado' : transformAsCoint(gold) }</span>
+              <AwesomeButton
+                size='medium' type={ equiped ? 'disabled' : 'primary' }
+                ripple action={() => toBuy(part.name, 'engines', 'engine', part.price)}>
+                  Comprar
+                </AwesomeButton>
+            </InfoProductBlock>
+          </InfoProductGlobalActions>
+        </InfoProductId>
+      </PreviewProduct>
+    )
+  })
 
   return divs
 }

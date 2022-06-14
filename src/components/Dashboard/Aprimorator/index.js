@@ -6,10 +6,10 @@ import cylinderImage from './images/parts/cilindro.png'
 import protectionImage from './images/parts/protecao.png'
 import whellsImage from './images/parts/rodas.png'
 
-import { 
+import {
   Aprimore, Header, HeaderMenuItem,
   Content, InsideContent, Gold,
-  BaseButtons, BtnSale, BtnExit 
+  BaseButtons, BtnSale, BtnExit
 } from './styles'
 
 import { transformAsCoint } from '../../../pages/Dashboard/functions'
