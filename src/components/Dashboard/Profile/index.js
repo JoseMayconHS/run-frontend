@@ -8,7 +8,7 @@ import "react-awesome-button/dist/styles.css"
 
 //Estilos
 import { Table } from '../../../styles'
-import { Dashboard, ContentTitle } from '../../../pages/Dashboard/styles'
+import { Dashboard, ContentTitle, CardImage } from '../../../pages/Dashboard/styles'
 import {
   Fieldset, ImgProfile, Data,
   SubTitle, InputAsSpan, ButtonEdit,
@@ -81,6 +81,8 @@ export default ({ push, data, updatePhoto, changeInfo }) => {
   const [name, setName] = useState({ state: { ...initialState }, original: data.user.name, other: data.user.name })
   const [password, setPassword] = useState({ state: { ...initialState }, original: '', other: '' })
 
+  const { src } = data.user
+
   const bodyOfTheFunctions = ({ state, setState, keyWord }, verifyFunction) => {
   	state.state.body[state.state.index].action(keyWord, { function: changeInfo, data: { original: state.original, other: state.other }, verify: verifyFunction })
       .then(({ status, index, state: newState,  message }) => {
@@ -145,7 +147,17 @@ export default ({ push, data, updatePhoto, changeInfo }) => {
          }}>Sou eu!</ButtonEdit>}
         <ImgProfile>
           { confirm.valid &&  <label htmlFor='file'><AwesomeButton size='large' type='primary' ripple action={() => document.getElementById('file').click()}>Trocar foto</AwesomeButton></label> }
-          <img src={data.user.src} alt='Sua foto do perfil' /><input id='file' type='file' onChange={e => updatePhoto(e.target.files[0])} />
+          {
+            src === 'pilots/default' ? (
+              <img src={`${ baseUrl }/files/${ src }.jpg`} alt='Sua foto do perfil' />
+            ) : (
+              <CardImage style={{
+                  backgroundImage: `url(${ src })`
+                }}
+              />
+              )
+            }
+          <input id='file' type='file' onChange={e => updatePhoto(e.target.files[0])} />
         </ImgProfile>
         <Data edit>
           <Span edit={name.state.edit} verify={ () => name.original !== name.other && validationNickName(name.other) }>

@@ -16,10 +16,21 @@ export const LogoReact = styled.img`
   :hover { cursor: pointer; }
 `
 
-export const Img = styled.img`
+const img_styles = `
   width: 50px;
   height: 50px;
   border-radius: 50%;
+`
+
+export const Img = styled.img`
+  ${ img_styles }
+`
+
+export const ImgAws = styled.img.attrs((_ ={}) => ({
+  ..._,
+  className: 'classes-backgroundimage'
+}))`
+ ${ img_styles }
 `
 
 export const Header = styled.header`

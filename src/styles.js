@@ -44,6 +44,13 @@ export const Global = createGlobalStyle`
 	    font-size: 12px;
 	  }
 	}
+
+
+	.classes-backgroundimage {
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
 `
 
 export const Table = styled.table`

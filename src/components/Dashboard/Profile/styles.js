@@ -30,7 +30,7 @@ export const ImgProfile = styled.div`
 
   button { margin: 10px; width: 100%; }
 
-  img { margin: 9px; border-radius: 10px; }
+  img, .profile { margin: 9px; border-radius: 10px; }
 `
 
 export const Data = styled.div`
@@ -60,7 +60,7 @@ export const Data = styled.div`
 			  	align-items: center;
 			  	justify-content: center;
 			  }
-  		} 
+  		}
   		@media (max-width: 620px) {
   			display: flex;
   			flex-direction: column;
@@ -144,7 +144,7 @@ export const ButtonEdit = styled.button`
 	}
 	${({ bg }) => {
 		if (bg) {
-		 return `background: ${bg}; 
+		 return `background: ${bg};
 			color: black;
 			opacity: .8;
 
@@ -233,7 +233,7 @@ export const Span = styled.span`
   }
 
   input:focus ~ label:after { background: yellow; }
-  
+
   input:focus:valid ~ label:after,
   input:valid ~ label:after { background: ${({ verify }) => verify()? 'green': 'red' }; }
 `
@@ -257,6 +257,7 @@ export const Del = styled.button`
 	border: none;
 	border-radius: 6px;
 	opacity: .5;
+	color: #FFF;
 
 	transition: opacity .4s ease-out;
 	:hover {
