@@ -87,8 +87,8 @@ function winOrLose({ auth } = Object, { gold, xp } = Object) {
   })
 }
 
-function transformAsCoint(value = String || Number) {
-  return 'R$ ' + Number(value)
+function transformAsCoint(value = String || Number, negative) {
+  return `R$ ${ negative ? '-' : '' }` + Number(value)
     .toFixed(2)
     .replace('.', ',')
     .replace(/(\d)(?=(\d{3})+\,)/g, '$1.')
@@ -150,9 +150,9 @@ function victory(waited = String, { nvl } = Object, advs = Array) {
     nvls += pilot.nvl
   })
 
-  if (waited === 'gold') return (nvls * 10000) - (nvl * 1000)
+  if (waited === 'gold') return (nvls * 10000) - (nvl * 100)
 
-  return (nvls * 1000) - nvl * 5
+  return (nvls * 100) - nvl * 5
 }
 
 function lose(waited = String, { nvl } = Object, advs = Array) {
@@ -161,16 +161,16 @@ function lose(waited = String, { nvl } = Object, advs = Array) {
     nvls += pilot.nvl
   })
 
-  if (waited === 'gold') return (nvls * 2000) - (nvl * 1000)
+  if (waited === 'gold') return (nvls * 200) - (nvl * 50)
 
-  return (nvls * 500) - nvl * 5
+  return (nvls * 20) - nvl * 5
 }
 
 function shame({ nvl } = Object, advs = Array) {
   let nvls = 0
   advs.forEach(({ pilot }) => nvls += pilot.nvl)
 
-  return (nvls * 500) - nvl * 100
+  return (nvls * 1000) - nvl * 100
 }
 
 export {

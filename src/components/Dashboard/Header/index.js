@@ -19,7 +19,10 @@ export default ({ data, changeBody, openModal }) =>
         </Profile>
         <FastInfo>
           <span>{transformAsCoint(data.auth.user.gold)}</span>
-          <Xp start={data.auth.user.xp} end={data.auth.user.limit_xp}>{data.auth.user.nvl}</Xp>
+          <Xp
+            title={`${ data.auth.user.xp }/${ data.auth.user.limit_xp }`}
+            start={data.auth.user.xp} end={data.auth.user.limit_xp}
+          >{data.auth.user.nvl}</Xp>
         </FastInfo>
       </Left>
       <Right>

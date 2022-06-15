@@ -49,7 +49,8 @@ export default class Dashboard extends Component {
             setTimeout(() => pointerEvents(true, ['btn-stop']), 5000)
           } else {
             pointerEvents(true, ['Header-limit-right-menu', 'preparetion'])
-            const gold = this.state.auth.user.gold - shame(this.state.auth.user, this.state.adv)
+            const discont = Math.abs(shame(this.state.auth.user, this.state.adv))
+            const gold = this.state.auth.user.gold - discont
             withdrawal({ auth: this.state.auth, gold: gold < 0? 0: gold })
               .then(auth => this.setState({ auth }))
           }
@@ -71,7 +72,7 @@ export default class Dashboard extends Component {
           winOrLose({ auth: this.state.auth }, { gold: gold < 999999999? gold: 999999999, xp })
             .then(auth => {
               const play = { ...this.state.play }
-              play.played = false
+              // play.played = false
               this.setState({ auth })
               setTimeout(() => {
                 pointerEvents(true, ['preparetion', 'Header-limit-right-menu'])

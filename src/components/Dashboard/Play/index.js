@@ -63,7 +63,7 @@ export default ({ play, data, adv, change }) =>
             {adv.map(({ pilot, car }, index) => <Table key={pilot.id} pilot={pilot} car={car} index={index + 1} /> )}
           </Players>
           <Buttons desistir className='btn-stop'>
-            <span>Pejuizo - {transformAsCoint(shame(data.user, adv))}</span>
+            <span>Pejuizo {transformAsCoint(shame(data.user, adv), true)}</span>
             <AwesomeButton size='large' type='secondary' ripple action={() => {
                 run()
                 setTimeout(() => play.startStop(false), 2000)

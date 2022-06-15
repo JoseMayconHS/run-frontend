@@ -75,6 +75,7 @@ export const Buttons = styled.div`
   border-top-right-radius: 10px;
   display: flex;
   flex-direction: column;
+  row-gap: 10px;
   align-items: center;
   width: 350px;
   max-width: 99%;
@@ -115,7 +116,7 @@ export const DivLideres = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 20px 1fr;
-  grid-template-areas: 
+  grid-template-areas:
   'head-lideres'
   'body-lideres';
 `
@@ -132,6 +133,10 @@ export const Lideres = styled.div`
 	  margin: 0px;
 	  position: absolute;
 	  transition: all 1s ease-in;
+  }
+
+  p#carro0 {
+    font-weight: 900;
   }
 `
 

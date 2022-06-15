@@ -14,7 +14,9 @@ function setDistance(nvl = Number) {
 
 function renderP(pilots = Array) {
   const ps = []
-  pilots.forEach(({ pilot, car }, index) => ps.push(<p key={index} id={`carro${index}`} className={`posicao${index}`}>0° - {pilot.nickname} [{car.model}] - 0 km/h</p>))
+  pilots.forEach(
+    ({ pilot, car }, index) => ps.push(<p {...{my: !index }} key={index} id={`carro${index}`} className={`posicao${index}`}>0° - {pilot.nickname} [{car.model}] - 0 km/h</p>)
+  )
 
   return ps
 }

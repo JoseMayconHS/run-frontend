@@ -26,9 +26,7 @@ const cerebro = new Brain()
 
 export default function instanciar(participants = Array, limit = Number, cb = Function) {
   if (cerebro.startado) {
-    cerebro.parar = true
-    cerebro.startado = false
-    stop()
+    finish(true)
   } else {
     const cars = []
     const pilots = []
@@ -45,9 +43,19 @@ export default function instanciar(participants = Array, limit = Number, cb = Fu
   }
 }
 
+export function finish(wasStopped) {
+  cerebro.parar = true
+  cerebro.startado = false
+  somCorrida(wasStopped ? null : 2)
+  stop()
+  clearInterval(tempoAtual)
+  tempo.reset()
+}
+
 function corrida(pilots, cars, limit, win) {
 
   const soltarTurbos = []
+
   for (let st = 0; st < cars.length; st++) {
     soltarTurbos.push(false)
   }
@@ -73,51 +81,42 @@ function corrida(pilots, cars, limit, win) {
     }
   }
 
-  function finish() {
-    cerebro.parar = true
-    cerebro.startado = false
-    somCorrida(2)
-    stop()
-    clearInterval(tempoAtual)
-    tempo.reset()
-  }
-
   setPreparetion(cars, limit)
 
   const runs = []
 
-  cars.forEach((carro, index) => {
+  cars.forEach((car, index) => {
     //======FUNÇÕES PRINCIPAIS======\\
     runs.push(() => {
-      carro.acelerar()
+      car.acelerar()
       if (!soltarTurbos[index]) {
-        if (carro.getBtnNitro()) {
+        if (car.getBtnNitro()) {
           somNitro(index)
           soltarTurbos[index] = true
         }
       }
-      if (carro.getCilindro()) carro.turbo()
-      document.getElementById(`distancia${index}`).innerHTML = `${(carro.getDistanciaPecorrida()).toFixed(3)} m`
-      myPositionNow(carro.getDistanciaPecorrida(), index, cars, pilots, limit)
-      document.querySelectorAll(`.aproveitamento${index}`).forEach(area =>area.style.background = `linear-gradient(to bottom, #909090, rgb(255, ${carro.getAproveitamento()}, ${carro.getAproveitamento()}))`)
-      document.querySelector(`#ponteiro${index} img`).style.transform = `translate(0px, 0px) rotate(${carro.getVelocidadeAtual() * (33 * (carro.getTotMarchas() + 1))  / (carro.getVelocidade() * (carro.getMarcha() * 20) / 100)}deg)`
-      document.getElementById(`velocidade${index}`).innerHTML = `${(carro.getVelocidadeAtual()).toFixed(0)} km/h`
-      document.getElementById(`quebra${index}`).innerHTML = `${(100 * carro.getResistencia() / carro.getQualidade()).toFixed(0)}%`
-      document.getElementById(`cambio${index}`).src = cambios[carro.getMarcha() - 1]
-      document.querySelector(`#grau${index} span`).style.width = `${(carro.getDistanciaPecorrida() * 100 / limit).toFixed(0)}%`
-      if (carro.getCilindro() === true && carro.getBtnNitro() === false) {
-        document.getElementById(`nitro${index}`).style.height = `${100 - 100 * carro.getTanque() / carro.getNitro()}%`
-        document.getElementById(`nitro${index}`).style.background = `linear-gradient(to bottom, #909090, rgb(255, ${carro.getAproveitamento()}, ${carro.getAproveitamento()}))`
-      } else if (carro.getBtnNitro() === true && carro.getTanque() <= (carro.getNitro() / 4 + carro.getNitro()) && carro.getCilindro() === true) {
-        document.getElementById(`nitro${index}`).style.height = `${0 + 100 * (carro.getTanque() - carro.getNitro()) / (carro.getNitro() / 8)}%`
-        document.getElementById(`nitro${index}`).style.background = `linear-gradient(to bottom, #909090, rgb(255, ${carro.getAproveitamento()}, ${carro.getAproveitamento()}))`
+      if (car.getCilindro()) car.turbo()
+      document.getElementById(`distancia${index}`).innerHTML = `${(car.getDistanciaPecorrida()).toFixed(3)} m`
+      myPositionNow(car.getDistanciaPecorrida(), index, cars, pilots, limit)
+      document.querySelectorAll(`.aproveitamento${index}`).forEach(area =>area.style.background = `linear-gradient(to bottom, #909090, rgb(255, ${car.getAproveitamento()}, ${car.getAproveitamento()}))`)
+      document.querySelector(`#ponteiro${index} img`).style.transform = `translate(0px, 0px) rotate(${car.getVelocidadeAtual() * (33 * (car.getTotMarchas() + 1))  / (car.getVelocidade() * (car.getMarcha() * 20) / 100)}deg)`
+      document.getElementById(`velocidade${index}`).innerHTML = `${(car.getVelocidadeAtual()).toFixed(0)} km/h`
+      document.getElementById(`quebra${index}`).innerHTML = `${(100 * car.getResistencia() / car.getQualidade()).toFixed(0)}%`
+      document.getElementById(`cambio${index}`).src = cambios[car.getMarcha() - 1]
+      document.querySelector(`#grau${index} span`).style.width = `${(car.getDistanciaPecorrida() * 100 / limit).toFixed(0)}%`
+      if (car.getCilindro() === true && car.getBtnNitro() === false) {
+        document.getElementById(`nitro${index}`).style.height = `${100 - 100 * car.getTanque() / car.getNitro()}%`
+        document.getElementById(`nitro${index}`).style.background = `linear-gradient(to bottom, #909090, rgb(255, ${car.getAproveitamento()}, ${car.getAproveitamento()}))`
+      } else if (car.getBtnNitro() === true && car.getTanque() <= (car.getNitro() / 4 + car.getNitro()) && car.getCilindro() === true) {
+        document.getElementById(`nitro${index}`).style.height = `${0 + 100 * (car.getTanque() - car.getNitro()) / (car.getNitro() / 8)}%`
+        document.getElementById(`nitro${index}`).style.background = `linear-gradient(to bottom, #909090, rgb(255, ${car.getAproveitamento()}, ${car.getAproveitamento()}))`
         document.getElementById(`chama${index}`).style.display = 'block'
-      } else if (carro.getCilindro() === false) {
+      } else if (car.getCilindro() === false) {
         document.getElementById(`chama${index}`).style.display = 'none'
         document.getElementById(`div-nitro${index}`).style.display = 'none'
       }
-      if (carro.getDistanciaPecorrida() <= limit) {
-        if (cerebro.parar !== true) {
+      if (car.getDistanciaPecorrida() <= limit) {
+        if (!cerebro.parar) {
           window.requestAnimationFrame(runs[index])
         }
       } else {
@@ -126,10 +125,13 @@ function corrida(pilots, cars, limit, win) {
     })
   })
 
+  cars.forEach((car, index) => {
+    myPositionNow(car.getDistanciaPecorrida(), index, cars, pilots, limit)
+  })
 
   setTimeout(() => {
     runs.forEach(run => window.requestAnimationFrame(run))
- 
+
     const freios = []
     pilots.forEach((pilot, index) => {
       freios[index] = setInterval(() => {

@@ -102,6 +102,7 @@ export const AreaInput = styled.div`
 
   display: flex;
   row-gap: 5px;
+  column-gap: 10px;
   flex-direction: ${({ double }) => (double ? "row" : "column-reverse")};
   ${({ double }) => {
     if (double)
