@@ -15,7 +15,7 @@ export default ({ data, changeBody, openModal }) =>
     <Limit>
       <Left>
         <Profile border={border(data.auth.user.nvl)}>
-          <Img src={`${ baseUrl }/files/${data.auth.user.src}.jpg`} alt='Imagem do usuário' />
+          <Img src={ data.auth.user.src } alt='Imagem do usuário' />
         </Profile>
         <FastInfo>
           <span>{transformAsCoint(data.auth.user.gold)}</span>

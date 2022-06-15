@@ -19,7 +19,7 @@ export default ({ play, data, adv, change }) =>
     <Preparetion className='preparetion'>
       <AllPlayers>
         <Card>
-          <img src={`${baseUrl}/files/${data.user.src}.jpg`} alt='Foto do usuário' />
+          <img src={ data.user.src } alt='Foto do usuário' />
           <CardInfo nvl={data.user.nvl}>{data.user.nickname}</CardInfo>
         </Card>
         <AwesomeButton size='large' type='secondary' ripple action={change}>Outro adversário</AwesomeButton>
