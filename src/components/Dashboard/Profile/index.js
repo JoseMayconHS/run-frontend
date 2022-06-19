@@ -147,6 +147,7 @@ export default ({ push, data, updatePhoto, changeInfo }) => {
          }}>Sou eu!</ButtonEdit>}
         <ImgProfile>
           { confirm.valid &&  <label htmlFor='file'><AwesomeButton size='large' type='primary' ripple action={() => document.getElementById('file').click()}>Trocar foto</AwesomeButton></label> }
+          { confirm.valid && <span>Imagem quadrada</span> }
           {
             src === 'pilots/default' ? (
               <img src={`${ baseUrl }/files/${ src }.jpg`} alt='Sua foto do perfil' />

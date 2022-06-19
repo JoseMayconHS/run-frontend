@@ -21,7 +21,7 @@ export const AllPlayers = styled.div`
 export const Card = styled.div`
 	position: relative;
   width: 180px;
-  height: 180px;
+  height: 206px;
   margin: 10px;
   border-radius: 10px;
   border: 1px solid white;
@@ -49,7 +49,7 @@ export const CardInfo = styled.span`
     }}
     color: white;
   	position: absolute;
-	  top: -150px;
+	  top: -175px;
 	  right: 5px;
     height: 19px;
     width: 19px;

@@ -18,6 +18,10 @@ export const Profile = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+	width: 50px;
+	height: 50px;
+	overflow: hidden;
+	border-radius: 50%;
 
   :before {
     content: '';
@@ -33,6 +37,11 @@ export const Profile = styled.div`
     -o-animation: ${rotate} 1s linear infinite;
     animation: ${rotate} 1s linear infinite;
   }
+
+	> img {
+		width: 109%;
+		height: 109%;
+	}
 `
 
 export const Xp = styled.span`

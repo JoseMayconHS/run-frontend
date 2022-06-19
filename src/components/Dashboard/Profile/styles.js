@@ -131,7 +131,7 @@ export const ButtonEdit = styled.button`
 	border-right: 3px solid black;
 	margin: 0px 3px;
 	font-weight: 600;
-	margin: 2px;
+	margin: 10px 2px;
 	margin-left: 10px;
 	width: 110px;
 	height: 29px;
@@ -142,10 +142,10 @@ export const ButtonEdit = styled.button`
 		border-top: 2px solid black;
 		border-left: 2px solid black;
 	}
-	${({ bg }) => {
+	${({ bg, color = 'black' }) => {
 		if (bg) {
 		 return `background: ${bg};
-			color: black;
+			color: ${ color };
 			opacity: .8;
 
 			:hover { opacity: 1; }`
@@ -159,7 +159,12 @@ export const InputConfirm = styled.input`
 	padding: 5px;
 	border-radius: 5px;
 	font-size: 15px;
-	margin-bottom: 20px;
+	margin: 10px;
+
+	::placeholder {
+		font-weight: bold;
+		color: black;
+	}
 
 	:after {
 		content: '';
@@ -175,7 +180,7 @@ export const InputConfirm = styled.input`
 	}
 
 	:focus:after {
-		tranform: scaleX(1);
+		transform: scaleX(1);
 	}
 `
 

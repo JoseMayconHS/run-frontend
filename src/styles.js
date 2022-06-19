@@ -15,7 +15,7 @@ export const Global = createGlobalStyle`
 
 	input[type='checkbox'] { display: none; }
 
-	input[type='password'] { letter-spacing: 5px; }
+	input[type='password'] { letter-spacing: 2px; }
 
 	button:hover { cursor: pointer; }
 
