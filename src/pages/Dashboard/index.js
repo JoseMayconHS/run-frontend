@@ -82,7 +82,11 @@ export default class Dashboard extends Component {
         }
       },
       profile: {
-        updateProfile: file => changePhoto({ auth: this.state.auth, file }).then(auth => this.setState({ auth })),
+        updateProfile: (file, cb) => {
+          changePhoto({ auth: this.state.auth, file })
+            .then(auth => this.setState({ auth }))
+            .finally(() => cb && cb())
+        },
         updateInfo: (field, value) => new Promise(resolve => {
           changeInfo({ auth: this.state.auth, field, value })
             .then(({ auth, status}) => {

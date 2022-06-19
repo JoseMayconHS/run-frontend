@@ -80,6 +80,7 @@ export default ({ push, data, updatePhoto, changeInfo }) => {
   const [email, setEmail] = useState({ state: { ...initialState }, original: data.user.email, other: data.user.email })
   const [name, setName] = useState({ state: { ...initialState }, original: data.user.name, other: data.user.name })
   const [password, setPassword] = useState({ state: { ...initialState }, original: '', other: '' })
+  const [photoUpdating, setPhotoUpdating] = useState(false)
 
   const { src } = data.user
 
@@ -112,7 +113,6 @@ export default ({ push, data, updatePhoto, changeInfo }) => {
   }
 
   const del = async () => {
-    console.log(push)
     if (await doRemove()) push.push('/')
   }
 
@@ -146,7 +146,16 @@ export default ({ push, data, updatePhoto, changeInfo }) => {
          	setConfirm({ ...confirm, modal: true })
          }}>Sou eu!</ButtonEdit>}
         <ImgProfile>
-          { confirm.valid &&  <label htmlFor='file'><AwesomeButton size='large' type='primary' ripple action={() => document.getElementById('file').click()}>Trocar foto</AwesomeButton></label> }
+          {
+            confirm.valid && (
+              <label htmlFor='file'>
+                <AwesomeButton size='large'
+                  type='primary' ripple
+                  disabled={ photoUpdating }
+                  action={() => document.getElementById('file').click()}>{ photoUpdating ? 'Aguarde' : 'Trocar foto' }</AwesomeButton>
+              </label>
+            )
+          }
           { confirm.valid && <span>Imagem quadrada</span> }
           {
             src === 'pilots/default' ? (
@@ -158,7 +167,19 @@ export default ({ push, data, updatePhoto, changeInfo }) => {
               />
               )
             }
-          <input id='file' type='file' onChange={e => updatePhoto(e.target.files[0])} />
+          <input id='file' type='file'
+            accept='.png, .jpg, .jpeg'
+            onChange={e => {
+              const file = e.target.files[0]
+
+              if (file) {
+                setPhotoUpdating(true)
+                updatePhoto(file, () => {
+                  setPhotoUpdating(false)
+                })
+              }
+            }}
+          />
         </ImgProfile>
         <Data edit>
           <Span edit={name.state.edit} verify={ () => name.original !== name.other && validationNickName(name.other) }>
