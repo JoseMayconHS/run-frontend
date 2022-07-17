@@ -1,3 +1,3 @@
-const baseUrl = 'https://run.up.railway.app'
+const baseUrl = 'https://runf-api.herokuapp.com'
 
 export default baseUrl

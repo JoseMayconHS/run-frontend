@@ -55,40 +55,43 @@ export const Global = createGlobalStyle`
 
 export const Table = styled.table`
 	border: 1px solid white;
-  padding: 4px;
-  border-radius: 10px;
-  overflow: hidden;
-  background: #111;
-  text-align: center;
-  margin: 20px 0px;
-  cursor: default;
-  width: 99%;
-  max-width: 650px;
+	padding: 4px;
+	border-radius: 10px;
+	overflow: hidden;
+	background: #111;
+	text-align: center;
+	margin: 20px 0px;
+	cursor: default;
+	width: 99%;
+	max-width: 650px;
 
 	thead .table-direction {
-  	padding: 2px 5px;
-	  margin: 0px 10px;
-	  cursor: pointer;
-  }
-
-  thead {
-	  background: #111;
-	  color: #f8f8f8;
-	  font-size: 14px;
+		padding: 2px 5px;
+		margin: 0px 10px;
+		cursor: pointer;
 	}
 
-	thead tr th { padding: 4px 0px; }
+	thead {
+		background: #111;
+		color: #f8f8f8;
+		font-size: 14px;
+	}
+
+	thead tr th {
+		padding: 6px 0px;
+	}
 
 	tbody {
-	  background: #999;
+		background: #999;
 	}
 
 	tbody td {
-	  border-bottom: 1px solid #777;
-	  border-left: 1px solid #777;
+		border-bottom: 1px solid #777;
+		border-left: 1px solid #777;
+		padding: 4px 0;
 	}
 
-	tbody td:hover {
+	tbody tr:hover {
 		background: #555;
 		color: white;
 	}
@@ -97,24 +100,24 @@ export const Table = styled.table`
 export const Container = styled.div`
 	position: relative;
 	border: 1px solid white;
-  width: 100%;
+	width: 100%;
 	background: red;
 	padding: 0 20px;
-  max-width: 1200px;
-  margin: auto;
-  overflow: hidden;
-  background: #222;
-  box-shadow: 0px 0px 10px black;
+	max-width: 1200px;
+	margin: auto;
+	overflow: hidden;
+	background: #222;
+	box-shadow: 0px 0px 10px black;
 	border-radius: 10px;
 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 
-  @media (min-width: 620px) {
-  	padding: 40px 15px;
-  }
+	@media (min-width: 620px) {
+		padding: 40px 15px;
+	}
 `
 
 export const Loading = styled.div`
