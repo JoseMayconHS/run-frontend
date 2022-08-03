@@ -94,7 +94,7 @@ const Register = ({ push: history }) => {
 
 		register(formData, history).then((res) => {
 			// CADASTRO SIMULADO
-			// return
+			return
 
 			if (!res.status) {
 				setMessage(res.message)

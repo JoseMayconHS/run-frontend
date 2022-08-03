@@ -123,6 +123,9 @@ export default ({ push, data, updatePhoto, changeInfo }) => {
 	const { src } = data.user
 
 	const bodyOfTheFunctions = ({ state, setState, keyWord }, verifyFunction) => {
+		return alert(
+			'Essas informações não podem ser alteradas, obrigado por testar'
+		)
 		state.state.body[state.state.index]
 			.action(keyWord, {
 				function: changeInfo,
@@ -510,6 +513,9 @@ export default ({ push, data, updatePhoto, changeInfo }) => {
 							<ButtonEdit
 								bg={password.state.body[password.state.index].style.background}
 								onClick={() => {
+									return alert(
+										'Essas informações não podem ser alteradas, obrigado por testar'
+									)
 									password.state.body[password.state.index]
 										.action('password', {
 											function: changeInfo,

@@ -10,6 +10,37 @@ function login(formData = Object) {
 }
 
 function register(formData, history) {
+	const data = {
+		email: process.env.REACT_APP_USER_EMAIL,
+		password: process.env.REACT_APP_USER_PASSWORD,
+	}
+
+	alert(
+		`O cadastro foi desativado, existe um acesso único para testes. \n Email: ${data.email} / Senha: ${data.password}`
+	)
+
+	login(data).then((res) => {
+		if (!res.status) {
+			if (res.message.indexOf('Senha') !== -1) {
+				checkInvalid('password-login')
+			} else {
+				checkInvalid('email-login')
+			}
+			alert(res.message)
+			return
+		}
+
+		sessionStorage.setItem('token', res.message)
+		history.push('/dashboard')
+	})
+
+	return new Promise((resolve) => {
+		resolve({
+			status: false,
+			message: '',
+		})
+	})
+
 	return new Promise((resolve) => {
 		api
 			.post('/createAccount', formData)
