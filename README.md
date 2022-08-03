@@ -7,6 +7,11 @@ Projeto criado para ser o _client-side_ do projeto **Run-Backend**.
 - [Repositório](https://github.com/JoseMayconHS/Run-Backend).
 - [Projeto online](https://run-frontend.vercel.app/)
 
+## Acesso único
+Acesso único para simplificar o teste, seja em desenvolvimento ou em produção(Portfólio)
+- Email: foobar@run.com
+- Senha: 123456
+
 ## Detalhes
 
 - A quantidade e força de adversário é de acordo com seu nível;
